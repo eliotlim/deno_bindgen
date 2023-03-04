@@ -47,8 +47,7 @@ async function generate() {
   const pkgName = conf.name;
   const fetchPrefix = typeof flags.release == "string"
     ? flags.release
-    : await findRelativeTarget() + [cargoTarget, release ? "release" : "debug"]
-      .join("/");
+    : path.join([await findRelativeTarget(), cargoTarget, release ? "release" : "debug"]);
 
   source = "// Auto-generated with deno_bindgen\n";
   source += codegen(
